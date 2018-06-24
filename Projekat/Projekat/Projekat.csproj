@@ -149,6 +149,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TaxiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -206,6 +207,18 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Taxi\Index.cshtml" />
+    <Content Include="Views\Taxi\SignUp.cshtml" />
+    <Content Include="Views\Taxi\SignUpError.cshtml" />
+    <Content Include="Views\Taxi\HomepageMusterija.cshtml" />
+    <Content Include="Views\Taxi\KorisnickoImeError.cshtml" />
+    <Content Include="Views\Taxi\LozinkaError.cshtml" />
+    <Content Include="Views\Taxi\LogIn.cshtml" />
+    <Content Include="Views\Taxi\Izmena.cshtml" />
+    <Content Include="Views\Taxi\HomepageAdministrator.cshtml" />
+    <Content Include="Views\Taxi\KreiranjeVozaca.cshtml" />
+    <Content Include="Views\Taxi\HomepageVozac.cshtml" />
+    <Content Include="Views\Taxi\PromenaLokacije.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

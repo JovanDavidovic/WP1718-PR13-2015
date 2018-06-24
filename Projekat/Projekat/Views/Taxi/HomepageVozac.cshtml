@@ -1,0 +1,11 @@
+﻿@using Projekat.Models
+@{
+    Layout = null;
+}
+
+<h2>Dobrodosli, @(((Korisnik)Session["Ulogovan"]).Ime) @(((Korisnik)Session["Ulogovan"]).Prezime)</h2>
+
+<a href="/Taxi/Izmena">Izmenite profil</a><br />
+<a href="/Taxi/PromeniLokaciju">Promenite lokaciju</a><br />
+<a href="/Taxi/Odjava">Odjavite se</a>
+

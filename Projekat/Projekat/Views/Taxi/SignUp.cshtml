@@ -1,0 +1,87 @@
+﻿
+@{
+    Layout = null;
+}
+
+<h2>LogIn</h2>
+<form action="/Taxi/SignUp" method="post">
+    <table border="0">
+        <tr>
+            <td>
+                Ime
+            </td>
+            <td>
+                <input type="text" name="Ime">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Prezime
+            </td>
+            <td>
+                <input type="text" name="Prezime">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Korisnicko ime
+            </td>
+            <td>
+                <input type="text" name="KorisnickoIme">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Email
+            </td>
+            <td>
+                <input type="email" name="Email">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Lozinka
+            </td>
+            <td>
+                <input required type="password" name="Lozinka">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Pol
+            </td>
+            <td>
+                <select name="Pol">
+                    <option value="MUSKI">
+                        Muski
+                    </option>
+                    <option value="ZENSKI">
+                        Zenki
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                JMBG
+            </td>
+            <td>
+                <input type="text" name="JMBG">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Telefon
+            </td>
+            <td>
+                <input type="tel" name="Telefon" pattern="[0-9]{3} [0-9]{3}-[0-9]{3,4}" placeholder="060 111-1111" oninvalid="setCustomValidity('Format telefonskog broja je: 060 111-1111')" oninput="setCustomValidity('')">
+            </td>
+        </tr>
+        <tr>
+            <td> &nbsp;</td>
+            <td>
+                <input type="submit" value="SignUp" />
+            </td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,65 @@
+﻿@using Projekat.Models
+@{
+    Layout = null;
+}
+
+<h2>Promenite lokaciju</h2>
+<form action="/Taxi/PromenaLokacije" method="post">
+    <input hidden type="text" value="@(((Vozac)Session["Ulogovan"]).KorisnickoIme)" name="log"/>
+    <table border="0">
+        <tr>
+            <td>
+                X koordinata
+            </td>
+            <td>
+                <input type="number" value="@(((Vozac)Session["Ulogovan"]).lokacija.Xkoordinata)" name="Xkoordinata">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Y koordinata
+            </td>
+            <td>
+                <input type="number" value="@(((Vozac)Session["Ulogovan"]).lokacija.Ykoordinata)" name="Ykoordinata">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Ulica
+            </td>
+            <td>
+                <input type="text" value="@(((Vozac)Session["Ulogovan"]).lokacija.adresa.Ulica)" name="Ulica">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Broj
+            </td>
+            <td>
+                <input type="number" value="@(((Vozac)Session["Ulogovan"]).lokacija.adresa.Broj)" name="Broj">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Mesto
+            </td>
+            <td>
+                <input type="text" value="@(((Vozac)Session["Ulogovan"]).lokacija.adresa.Mesto)" name="Mesto">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Pozivni broj
+            </td>
+            <td>
+                <input type="number" value="@(((Vozac)Session["Ulogovan"]).lokacija.adresa.PozivniBroj)" name="PozivniBroj">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="Sacuvaj lokaciju" />
+            </td>
+        </tr>
+    </table>
+</form>
+
