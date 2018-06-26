@@ -9,8 +9,8 @@ namespace Projekat.Models
     {
         public DateTime VremePorudzbine { get; set; }
         public Lokacija LokacijaDolaskaTaksija { get; set; }
-        public Automobil ZeljenoVozilo { get; set; }
-        public Musterija musterija { get; set; }
+        public TIPAUTOMOBILA ZeljenoVozilo { get; set; }
+        public Korisnik musterija { get; set; }
         public Lokacija Odrediste { get; set; }
         public Dispecer dispecer { get; set; }
         public Vozac vozac { get; set; }

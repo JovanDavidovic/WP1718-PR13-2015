@@ -53,6 +53,7 @@ namespace Projekat
             }
             HttpContext.Current.Session["Administratori"] = administratori;
             HttpContext.Current.Session["Vozaci"] = new Dictionary<string, Vozac>();
+            HttpContext.Current.Session["Voznje"] = new Dictionary<string, Voznja>();
         }
     }
 }

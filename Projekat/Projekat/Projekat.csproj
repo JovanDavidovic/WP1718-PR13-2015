@@ -219,6 +219,11 @@
     <Content Include="Views\Taxi\KreiranjeVozaca.cshtml" />
     <Content Include="Views\Taxi\HomepageVozac.cshtml" />
     <Content Include="Views\Taxi\PromenaLokacije.cshtml" />
+    <Content Include="Views\Taxi\MusterijaZahtev.cshtml" />
+    <Content Include="Views\Taxi\PregledSvihVoznjiMusterije.cshtml" />
+    <Content Include="Views\Taxi\OtkazivanjeError.cshtml" />
+    <Content Include="Views\Taxi\IzmenaVoznje.cshtml" />
+    <Content Include="Views\Taxi\Komentar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

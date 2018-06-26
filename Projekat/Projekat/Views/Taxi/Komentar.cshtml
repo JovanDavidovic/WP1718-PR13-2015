@@ -1,0 +1,12 @@
+﻿
+@{
+    Layout = null;
+}
+
+<h2>Molim vas navedite razlog otkazivanja voznje</h2>
+<form action="/Taxi/Komentarisi" method="post" id="usrform">
+    <input type="hidden" value="@ViewBag.voznja.VremePorudzbine" name="date" />
+    <input type="submit" value="Komentarisi" />
+</form>
+
+<textarea name="komentar" form="usrform">Enter text here...</textarea>

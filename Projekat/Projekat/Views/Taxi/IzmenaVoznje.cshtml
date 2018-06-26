@@ -1,0 +1,92 @@
+﻿@using Projekat.Models
+@{
+    Layout = null;
+}
+
+<h2>IzmenaVoznje</h2>
+<form action="/Taxi/IzmenaVoznje" method="post">
+    <table border="0">
+        <tr>
+            <td>
+                X koordinata
+            </td>
+            <td>
+                <input type="number" value="@ViewBag.voznja.LokacijaDolaskaTaksija.Xkoordinata" name="Xkoordinata">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Y koordinata
+            </td>
+            <td>
+                <input type="number" value="@ViewBag.voznja.LokacijaDolaskaTaksija.Ykoordinata" name="Ykoordinata">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Ulica
+            </td>
+            <td>
+                <input type="text" value="@ViewBag.voznja.LokacijaDolaskaTaksija.adresa.Ulica" name="Ulica">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Broj
+            </td>
+            <td>
+                <input type="number" value="@ViewBag.voznja.LokacijaDolaskaTaksija.adresa.Broj" name="Broj">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Mesto
+            </td>
+            <td>
+                <input type="text" value="@ViewBag.voznja.LokacijaDolaskaTaksija.adresa.Mesto" name="Mesto">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Pozivni broj
+            </td>
+            <td>
+                <input type="number" value="@ViewBag.voznja.LokacijaDolaskaTaksija.adresa.PozivniBroj" name="PozivniBroj">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Tip automobila
+            </td>
+            <td>
+                <select name="tip">
+                    @if (ViewBag.voznja.ZeljenoVozilo == TIPAUTOMOBILA.PUTNICKI)
+                    {
+                        <option selected value="PUTNICKI">
+                            Putnicki
+                        </option>
+                        <option value="KOMBI">
+                            Kombi
+                        </option>
+                    }
+                    else
+                    {
+                        <option  value="PUTNICKI">
+                            Putnicki
+                        </option>
+                        <option selected value="KOMBI">
+                            Kombi
+                        </option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="hidden" value="@ViewBag.voznja.VremePorudzbine" name="date" />
+                <input type="submit" value="Sacuvaj izmene" />
+            </td>
+        </tr>
+    </table>
+    <a href="/Taxi/GoToHome">Vratite se na pocetnu</a>
+</form>

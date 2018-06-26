@@ -1,0 +1,79 @@
+﻿
+@{
+    Layout = null;
+}
+
+<h2>MusterijaZahtev</h2>
+<form action="/Taxi/KreiranjeVoznje" method="post">
+    <table border="0">
+        <tr>
+            <td>
+                X koordinata
+            </td>
+            <td>
+                <input type="number" name="Xkoordinata">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Y koordinata
+            </td>
+            <td>
+                <input type="number" name="Ykoordinata">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Ulica
+            </td>
+            <td>
+                <input type="text" name="Ulica">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Broj
+            </td>
+            <td>
+                <input type="number" name="Broj">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Mesto
+            </td>
+            <td>
+                <input type="text" name="Mesto">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Pozivni broj
+            </td>
+            <td>
+                <input type="number" name="PozivniBroj">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Tip automobila
+            </td>
+            <td>
+                <select name="tip">
+                    <option value="PUTNICKI">
+                        Putnicki
+                    </option>
+                    <option value="KOMBI">
+                        Kombi
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="Kreiraj" />
+            </td>
+        </tr>
+    </table>
+    <a href="/Taxi/GoToHome">Vratite se na pocetnu</a>
+</form>

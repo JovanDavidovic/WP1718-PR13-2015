@@ -1,0 +1,52 @@
+﻿@using Projekat.Models
+@{
+    Layout = null;
+}
+<head>
+    @{
+        var getVoznje = new Func<Dictionary<string, Voznja>>(() => (Dictionary<string, Voznja>)Session["Voznje"]);
+    }
+</head>
+<body>
+    <h2>PregledSvihVoznjiMusterije</h2>
+    <table border="0">
+        <tr>
+            <th>
+                Vasa lokacija
+            </th>
+            <th>
+                Vreme porudzbine
+            </th>
+            <th>
+                Opcije
+            </th>
+        </tr>
+        @foreach (KeyValuePair<string, Voznja> kv in getVoznje())
+        {
+            if (kv.Value.musterija.KorisnickoIme.Equals((((Korisnik)Session["Ulogovan"]).KorisnickoIme)) && kv.Value.StatusVoznje != STATUS.OTKAZANA)
+            {
+        <tr>
+            <td>
+                @kv.Value.LokacijaDolaskaTaksija.adresa.Ulica
+            </td>
+            <td>
+                @kv.Key
+            </td>
+            <td align="center">
+                <form action="/Taxi/Otkazivanje" method="post">
+                    <input type="hidden" value="@kv.Key" name="date" />
+                    <input type="submit" value="Otkazi" />
+                </form>
+            </td>
+            <td>
+                <form action="/Taxi/IzmeniVoznju" method="post">
+                    <input type="hidden" value="@kv.Key" name="date" />
+                    <input type="submit" value="Izmeni" />
+                </form>
+            </td>
+        </tr>
+            }
+        }
+    </table>
+    <a href="/Taxi/GoToHome">Vratite se na pocetnu</a>
+</body>
