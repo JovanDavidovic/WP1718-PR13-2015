@@ -3,8 +3,8 @@
     Layout = null;
 }
 
-<h2>MusterijaZahtev</h2>
-<form action="/Taxi/KreiranjeVoznje" method="post">
+<h2>OdredisteUnos</h2>
+<form action="/Taxi/OdredisteIznos" method="post">
     <table border="0">
         <tr>
             <td>
@@ -56,27 +56,16 @@
         </tr>
         <tr>
             <td>
-                Tip automobila
+                Iznos
             </td>
             <td>
-                <select name="tip">     
-                    <option value="NEOZNACEN">
-                        
-                    </option>
-                    <option value="PUTNICKI">
-                        Putnicki
-                    </option>
-                    <option value="KOMBI">
-                        Kombi
-                    </option>
-                </select>
+                <input type="number" name="cena">
             </td>
         </tr>
         <tr>
             <td colspan="2" align="center">
-                <input type="submit" value="Kreiraj" />
+                <input type="submit" value="Unesi" />
             </td>
         </tr>
     </table>
-    <a href="/Taxi/GoToHome">Vratite se na pocetnu</a>
 </form>

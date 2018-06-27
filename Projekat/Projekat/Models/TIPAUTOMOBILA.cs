@@ -5,5 +5,5 @@ using System.Web;
 
 namespace Projekat.Models
 {
-    public enum TIPAUTOMOBILA{PUTNICKI, KOMBI}
+    public enum TIPAUTOMOBILA{NEOZNACEN, PUTNICKI, KOMBI}
 }

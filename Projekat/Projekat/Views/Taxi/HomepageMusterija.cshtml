@@ -2,10 +2,51 @@
 @{
     Layout = null;
 }
-
-<h2>Dobrodosli, @(((Korisnik)Session["Ulogovan"]).Ime) @(((Korisnik)Session["Ulogovan"]).Prezime)</h2>
-
-<a href="/Taxi/Izmena">Izmenite profil</a><br />
-<a href="/Taxi/MusterijaZahtev">Zahtev za voznju</a><br />
-<a href="/Taxi/Pregledaj">Sve voznje</a><br />
-<a href="/Taxi/Odjava">Odjavite se</a>
+<head>
+    @{
+        var getVoznje = new Func<Dictionary<string, Voznja>>(() => (Dictionary<string, Voznja>)Session["Voznje"]);
+    }
+</head>
+<body>
+    <h2>Dobrodosli, @(((Korisnik)Session["Ulogovan"]).Ime) @(((Korisnik)Session["Ulogovan"]).Prezime)</h2>
+    @if (ViewBag.broj != 0) {
+    <table border="0">
+        <caption>Prikaz voznji</caption>
+        <tr>
+            <th>
+                Ulica
+            </th>
+            <th>
+                broj
+            </th>
+            <th>
+                Vreme porudzbine
+            </th>
+        </tr>
+        @foreach (KeyValuePair<string, Voznja> kv in getVoznje())
+        {
+            if (kv.Value.musterija.KorisnickoIme.Equals((((Korisnik)Session["Ulogovan"]).KorisnickoIme)))
+            {
+                <tr>
+                    <td>
+                        @kv.Value.LokacijaDolaskaTaksija.adresa.Ulica
+                    </td>
+                    <td>
+                        @kv.Value.LokacijaDolaskaTaksija.adresa.Broj
+                    </td>
+                    <td>
+                        @kv.Key
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    }
+        <a href="/Taxi/Izmena">Izmenite profil</a>
+        <br />
+        <a href="/Taxi/MusterijaZahtev">Zahtev za voznju</a>
+        <br />
+        <a href="/Taxi/Pregledaj">Upravljanje voznjama</a>
+        <br />
+        <a href="/Taxi/Odjava">Odjavite se</a>
+</body>

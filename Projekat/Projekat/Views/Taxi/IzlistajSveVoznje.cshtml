@@ -1,0 +1,46 @@
+﻿@using Projekat.Models
+@{
+    Layout = null;
+}
+
+<h2>IzlistajSveVoznje</h2>
+<table border="0">
+    <tr>
+        <th>
+            Vreme kreiranja porudzbine
+        </th>
+        <th>
+            Adresa
+        </th>
+        <th>
+            Ocena
+        </th>
+        <th>
+            Komentar
+        </th>
+    </tr>
+    @foreach (KeyValuePair<string, Voznja> kv in ViewBag.voznje)
+    {
+    <tr>
+        <td>
+            @kv.Value.VremePorudzbine
+        </td>
+        <td>
+            @kv.Value.LokacijaDolaskaTaksija.adresa.Ulica @kv.Value.LokacijaDolaskaTaksija.adresa.Broj, @kv.Value.LokacijaDolaskaTaksija.adresa.Mesto @kv.Value.LokacijaDolaskaTaksija.adresa.PozivniBroj
+        </td>
+        <td>
+            @kv.Value.komentar.Ocena
+        </td>
+        <td>
+            @kv.Value.komentar.Opis
+        </td>
+        <td>
+            <form action="/Taxi/PrikaziVoznju" method="post">
+                <input type="hidden" value="@kv.Key" name="date" />
+                <input type="submit" value="Prikazi" />
+            </form>
+        </td>
+    </tr>
+    }
+</table>
+<a href="/Taxi/GoToHomeAdmin">Vratite se na pocetnu</a>

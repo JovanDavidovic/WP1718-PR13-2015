@@ -1,10 +1,10 @@
-﻿
+﻿@using Projekat.Models
 @{
     Layout = null;
 }
 
-<h2>MusterijaZahtev</h2>
-<form action="/Taxi/KreiranjeVoznje" method="post">
+<h2>KreirajVoznju</h2>
+<form action="/Taxi/KreirajVoznju" method="post">
     <table border="0">
         <tr>
             <td>
@@ -59,10 +59,8 @@
                 Tip automobila
             </td>
             <td>
-                <select name="tip">     
-                    <option value="NEOZNACEN">
-                        
-                    </option>
+                <select name="tip">
+                    <option value="NEOZNACEN"></option>
                     <option value="PUTNICKI">
                         Putnicki
                     </option>
@@ -73,10 +71,26 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2" align="center">
-                <input type="submit" value="Kreiraj" />
+            <td>
+                Vozac
             </td>
-        </tr>
-    </table>
-    <a href="/Taxi/GoToHome">Vratite se na pocetnu</a>
-</form>
+            <td>
+                <select name="vozac">
+                    @foreach (KeyValuePair<string, Vozac> kv in ViewBag.vozaci)
+                    {
+                        if (!kv.Value.Zauzet)
+                        {
+                        <option value="@kv.Key">@kv.Key</option>
+                            }
+                        }
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Kreiraj" />
+                </td>
+            </tr>
+        </table>
+        <a href="/Taxi/GoToHomeAdmin">Vratite se na pocetnu</a>
+    </form>

@@ -23,7 +23,7 @@
         </tr>
         @foreach (KeyValuePair<string, Voznja> kv in getVoznje())
         {
-            if (kv.Value.musterija.KorisnickoIme.Equals((((Korisnik)Session["Ulogovan"]).KorisnickoIme)) && kv.Value.StatusVoznje != STATUS.OTKAZANA)
+            if (kv.Value.musterija.KorisnickoIme.Equals((((Korisnik)Session["Ulogovan"]).KorisnickoIme)) && kv.Value.StatusVoznje == STATUS.NACEKANJU)
             {
         <tr>
             <td>
@@ -42,6 +42,55 @@
                 <form action="/Taxi/IzmeniVoznju" method="post">
                     <input type="hidden" value="@kv.Key" name="date" />
                     <input type="submit" value="Izmeni" />
+                </form>
+            </td>
+            <td>
+                <form action="/Taxi/PrikaziVoznju" method="post">
+                    <input type="hidden" value="@kv.Key" name="date" />
+                    <input type="submit" value="Prikazi" />
+                </form>
+            </td>
+        </tr>
+            }
+        }
+        @foreach (KeyValuePair<string, Voznja> kv in getVoznje())
+        {
+            if (kv.Value.musterija.KorisnickoIme.Equals((((Korisnik)Session["Ulogovan"]).KorisnickoIme)) && kv.Value.StatusVoznje == STATUS.USPESNA && kv.Value.komentar.Opis.IsEmpty())
+            {
+        <tr>
+            <td>
+                @kv.Value.LokacijaDolaskaTaksija.adresa.Ulica
+            </td>
+            <td>
+                @kv.Key
+            </td>
+            <td align="center">
+                <form action="/Taxi/OstavljanjeKomentara" method="post">
+                    <input type="hidden" value="@kv.Key" name="date" />
+                    <input type="submit" value="Ostavite komentar" />
+                </form>
+            </td>
+            <td>
+                <form action="/Taxi/PrikaziVoznju" method="post">
+                    <input type="hidden" value="@kv.Key" name="date" />
+                    <input type="submit" value="Prikazi" />
+                </form>
+            </td>
+        </tr>
+            }
+            else if (kv.Value.musterija.KorisnickoIme.Equals((((Korisnik)Session["Ulogovan"]).KorisnickoIme)) && kv.Value.StatusVoznje == STATUS.USPESNA && !kv.Value.komentar.Opis.IsEmpty())
+            {
+        <tr>
+            <td>
+                @kv.Value.LokacijaDolaskaTaksija.adresa.Ulica
+            </td>
+            <td>
+                @kv.Key
+            </td>
+            <td>
+                <form action="/Taxi/PrikaziVoznju" method="post">
+                    <input type="hidden" value="@kv.Key" name="date" />
+                    <input type="submit" value="Prikazi" />
                 </form>
             </td>
         </tr>

@@ -2,9 +2,55 @@
 @{
     Layout = null;
 }
-
-<h2>Dobrodosli, @(((Korisnik)Session["Ulogovan"]).Ime) @(((Korisnik)Session["Ulogovan"]).Prezime)</h2>
-
-<a href="/Taxi/Izmena">Izmenite profil</a><br />
-<a href="/Taxi/GoToKreiranjeVozaca">Kreiranje vozaca</a><br />
-<a href="/Taxi/Odjava">Odjavite se</a>
+<head>
+    @{
+        var getVoznje = new Func<Dictionary<string, Voznja>>(() => (Dictionary<string, Voznja>)Session["Voznje"]);
+    }
+</head>
+<body>
+    <h2>Dobrodosli, @(((Korisnik)Session["Ulogovan"]).Ime) @(((Korisnik)Session["Ulogovan"]).Prezime)</h2>
+    @if (ViewBag.broj != 0)
+    {
+        <table border="0">
+            <caption>Prikaz voznji</caption>
+            <tr>
+                <th>
+                    Ulica
+                </th>
+                <th>
+                    broj
+                </th>
+                <th>
+                    Vreme porudzbine
+                </th>
+            </tr>
+            @foreach (KeyValuePair<string, Voznja> kv in getVoznje())
+            {
+                try
+                {
+                    if (kv.Value.dispecer.KorisnickoIme.Equals((((Korisnik)Session["Ulogovan"]).KorisnickoIme)))
+                    {
+                        <tr>
+                            <td>
+                                @kv.Value.LokacijaDolaskaTaksija.adresa.Ulica
+                            </td>
+                            <td>
+                                @kv.Value.LokacijaDolaskaTaksija.adresa.Broj
+                            </td>
+                            <td>
+                                @kv.Key
+                            </td>
+                        </tr>
+                    }
+                }
+                catch { }
+            }
+        </table>
+    }
+    <a href="/Taxi/Izmena">Izmenite profil</a><br />
+    <a href="/Taxi/GoToKreiranjeVozaca">Kreiranje vozaca</a><br />
+    <a href="/Taxi/GoToKreiranjeVoznje">Kreiranje voznje</a><br />
+    <a href="/Taxi/GoToProveraVoznji">Pregled ne preuzetih voznji</a><br />
+    <a href="/Taxi/GoToSveVoznje">Sve voznje</a><br />
+    <a href="/Taxi/Odjava">Odjavite se</a>
+</body>

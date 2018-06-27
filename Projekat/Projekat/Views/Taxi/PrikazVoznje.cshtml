@@ -1,0 +1,108 @@
+﻿@using Projekat.Models
+@{
+    Layout = null;
+}
+
+<h2>PrikazVoznje</h2>
+<table border="0">
+    <tr>
+        <td>
+            X koordinata
+        </td>
+        <td>
+            @ViewBag.voznja.LokacijaDolaskaTaksija.Xkoordinata
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Y koordinata
+        </td>
+        <td>
+            @ViewBag.voznja.LokacijaDolaskaTaksija.Ykoordinata
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Ulica
+        </td>
+        <td>
+            @ViewBag.voznja.LokacijaDolaskaTaksija.adresa.Ulica
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Broj
+        </td>
+        <td>
+            @ViewBag.voznja.LokacijaDolaskaTaksija.adresa.Broj
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Mesto
+        </td>
+        <td>
+            @ViewBag.voznja.LokacijaDolaskaTaksija.adresa.Mesto
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Pozivni broj
+        </td>
+        <td>
+            @ViewBag.voznja.LokacijaDolaskaTaksija.adresa.PozivniBroj
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Tip automobila
+        </td>
+        <td>
+            @ViewBag.voznja.ZeljenoVozilo
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Komentar ostavio
+        </td>
+        <td>
+            @if (ViewBag.voznja.komentar.korisnik.KorisnickoIme != null)
+            {
+                @ViewBag.voznja.komentar.korisnik.KorisnickoIme
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Ocena
+        </td>
+        <td>
+            @if (ViewBag.voznja.komentar.Ocena != null)
+            {
+                @ViewBag.voznja.komentar.Ocena
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Komentar
+        </td>
+        <td>
+            @if (ViewBag.voznja.komentar.Opis != null)
+            {
+                @ViewBag.voznja.komentar.Opis
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Datum objave
+        </td>
+        <td>
+            @if (ViewBag.voznja.komentar.DatumObjave != null)
+            {
+                @ViewBag.voznja.komentar.DatumObjave
+            }
+        </td>
+    </tr>
+</table>

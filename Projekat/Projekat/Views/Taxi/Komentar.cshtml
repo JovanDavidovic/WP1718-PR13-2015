@@ -1,12 +1,20 @@
-﻿
+﻿@using Projekat.Models
 @{
     Layout = null;
 }
 
 <h2>Molim vas navedite razlog otkazivanja voznje</h2>
 <form action="/Taxi/Komentarisi" method="post" id="usrform">
+    @if (ViewBag.voznja.StatusVoznje == STATUS.OTKAZANA || ViewBag.voznja.StatusVoznje == STATUS.NEUSPESNA)
+    {
+        <input hidden type="number" value="0" name="ocena" />
+    }
+    else
+    {
+        <input type="number" min="1" max="5" name="ocena" /><br />
+    }
     <input type="hidden" value="@ViewBag.voznja.VremePorudzbine" name="date" />
     <input type="submit" value="Komentarisi" />
 </form>
 
-<textarea name="komentar" form="usrform">Enter text here...</textarea>
+<textarea name="komentar" form="usrform"></textarea>

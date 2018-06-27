@@ -224,6 +224,15 @@
     <Content Include="Views\Taxi\OtkazivanjeError.cshtml" />
     <Content Include="Views\Taxi\IzmenaVoznje.cshtml" />
     <Content Include="Views\Taxi\Komentar.cshtml" />
+    <Content Include="Views\Taxi\KreirajVoznju.cshtml" />
+    <Content Include="Views\Taxi\ProveriVoznje.cshtml" />
+    <Content Include="Views\Taxi\DodeliVozacaVoznji.cshtml" />
+    <Content Include="Views\Taxi\PromeniStatusVoznje.cshtml" />
+    <Content Include="Views\Taxi\OdredisteUnos.cshtml" />
+    <Content Include="Views\Taxi\PrikazVoznje.cshtml" />
+    <Content Include="Views\Taxi\PromeniStatusVoznjeError.cshtml" />
+    <Content Include="Views\Taxi\IzlistajSveVoznje.cshtml" />
+    <Content Include="Views\Taxi\KreiranjeVozacaError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

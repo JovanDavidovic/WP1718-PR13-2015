@@ -74,6 +74,7 @@ namespace Projekat.Controllers
         [HttpPost]
         public ActionResult LogIn(string korisnickoIme, string lozinka)
         {
+            int i = 0;
             if (!getKorisnik.ContainsKey(korisnickoIme))
             {
                 if (getAdministratori.ContainsKey(korisnickoIme))
@@ -83,6 +84,19 @@ namespace Projekat.Controllers
                         return View("LozinkaError");
                     }
                     Session["Ulogovan"] = getAdministratori[korisnickoIme];
+                    i = 0;
+                    foreach (KeyValuePair<string, Voznja> kv in getVoznje)
+                    {
+                        try
+                        {
+                            if (kv.Value.dispecer.KorisnickoIme.Equals(getAdministratori[korisnickoIme].KorisnickoIme))
+                            {
+                                i++;
+                            }
+                        }
+                        catch { }
+                    }
+                    ViewBag.broj = i;
                     return View("HomepageAdministrator");
                 }
                 if (getVozaci.ContainsKey(korisnickoIme))
@@ -103,6 +117,15 @@ namespace Projekat.Controllers
             }
 
             Session["Ulogovan"] = getKorisnik[korisnickoIme];
+            i = 0;
+            foreach (KeyValuePair<string, Voznja> kv in getVoznje)
+            {
+                if (kv.Value.musterija.KorisnickoIme.Equals(getKorisnik[korisnickoIme].KorisnickoIme))
+                {
+                    i++;
+                }
+            }
+            ViewBag.broj = i;
             return View("HomepageMusterija");
         }
 
@@ -125,11 +148,13 @@ namespace Projekat.Controllers
         [HttpPost]
         public ActionResult KreiranjeVozaca(Vozac v, Automobil a, Lokacija l, Adresa ad)
         {
+            if (getKorisnik.ContainsKey(v.KorisnickoIme) || getAdministratori.ContainsKey(v.KorisnickoIme) || getVozaci.ContainsKey(v.KorisnickoIme))
+                return View("KreiranjeVozacaError");
             a.vozac = v;
             v.automobil = a;
             l.adresa = ad;
             v.lokacija = l;
-
+            v.Zauzet = false;
             getVozaci.Add(v.KorisnickoIme, v);
             return View("HomepageAdministrator");
         }
@@ -165,6 +190,9 @@ namespace Projekat.Controllers
             v.ZeljenoVozilo = tip;
             v.StatusVoznje = STATUS.NACEKANJU;
             v.musterija = (Korisnik)Session["Ulogovan"];
+            v.vozac = new Vozac();
+            v.komentar = new Komentar();
+            v.komentar.korisnik = new Korisnik();
             getVoznje.Add(v.VremePorudzbine.ToString(), v);
             return View("PregledSvihVoznjiMusterije");
         }
@@ -174,7 +202,7 @@ namespace Projekat.Controllers
             bool test = false;
             if (getVoznje[date].StatusVoznje == STATUS.NACEKANJU)
             {
-                getVoznje[date].StatusVoznje = STATUS.OTKAZANA; ;
+                getVoznje[date].StatusVoznje = STATUS.OTKAZANA;
                 test = true;
             }
             if (test)
@@ -191,13 +219,55 @@ namespace Projekat.Controllers
         }
         public ActionResult GoToHome()
         {
+            int i = 0;
+            foreach (KeyValuePair<string, Voznja> kv in getVoznje)
+            {
+                if (kv.Value.musterija.KorisnickoIme.Equals((((Korisnik)Session["Ulogovan"]).KorisnickoIme)))
+                {
+                    i++;
+                }
+            }
+            ViewBag.broj = i;
             return View("HomepageMusterija");
+        }
+        public ActionResult GoToHomeAdmin()
+        {
+            int i = 0;
+            foreach (KeyValuePair<string, Voznja> kv in getVoznje)
+            {
+                try
+                {
+                    if (kv.Value.dispecer.KorisnickoIme.Equals((((Korisnik)Session["Ulogovan"]).KorisnickoIme)))
+                    {
+                        i++;
+                    }
+                }
+                catch { }
+            }
+            ViewBag.broj = i;
+            return View("HomepageAdministrator");
+        }
+        public ActionResult GoToHomeVozac()
+        {
+            return View("HomepageVozac");
         }
         [HttpPost]
         public ActionResult IzmeniVoznju(string date)
         {
             ViewBag.voznja = getVoznje[date];
             return View("IzmenaVoznje");
+        }
+        [HttpPost]
+        public ActionResult OstavljanjeKomentara(string date)
+        {
+            ViewBag.voznja = getVoznje[date];
+            return View("Komentar");
+        }
+        [HttpPost]
+        public ActionResult PrikaziVoznju(string date)
+        {
+            ViewBag.voznja = getVoznje[date];
+            return View("PrikazVoznje");
         }
         [HttpPost]
         public ActionResult IzmenaVoznje(Lokacija l, Adresa ad, TIPAUTOMOBILA tip, string date)
@@ -225,15 +295,125 @@ namespace Projekat.Controllers
         }
 
         [HttpPost]
-        public ActionResult Komentarisi(string date, string komentar)
+        public ActionResult Komentarisi(string date, string komentar, int ocena)
         {
             getVoznje[date].komentar = new Komentar();
-            getVoznje[date].komentar.DatumObjave = DateTime.Now;
-            getVoznje[date].komentar.korisnik = (Korisnik)Session["Ulogovan"];
+            getVoznje[date].komentar.DatumObjave = DateTime.Now;            
             getVoznje[date].komentar.Opis = komentar;
             getVoznje[date].komentar.voznja = getVoznje[date];
-            getVoznje[date].komentar.Ocena = 0;
-            return View("PregledSvihVoznjiMusterije");
+            getVoznje[date].komentar.Ocena = ocena;
+            try
+            {
+                getVoznje[date].komentar.korisnik = (Vozac)Session["Ulogovan"];
+                return View("HomepageVozac");               
+            }
+            catch
+            {
+                getVoznje[date].komentar.korisnik = (Korisnik)Session["Ulogovan"];
+                return View("PregledSvihVoznjiMusterije");
+            }
+        }
+
+        public ActionResult GoToKreiranjeVoznje()
+        {
+            ViewBag.vozaci = getVozaci;
+            return View("KreirajVoznju");
+        }
+        public ActionResult KreirajVoznju(Lokacija l, Adresa ad, TIPAUTOMOBILA tip, string vozac)
+        {
+            l.adresa = ad;
+            Voznja v = new Voznja();
+            v.LokacijaDolaskaTaksija = l;
+            v.VremePorudzbine = DateTime.Now;
+            v.ZeljenoVozilo = tip;
+            v.StatusVoznje = STATUS.FORMIRANA;
+            v.dispecer = (Korisnik)Session["Ulogovan"];
+            v.vozac = getVozaci[vozac];
+            getVozaci[vozac].Zauzet = true;
+            v.komentar = new Komentar();
+            v.komentar.korisnik = new Korisnik();
+            v.musterija = new Korisnik();
+            v.musterija.KorisnickoIme = "";
+            getVoznje.Add(v.VremePorudzbine.ToString(), v);
+            return View("HomepageAdministrator");
+        }
+
+        public ActionResult GoToProveraVoznji()
+        {
+            ViewBag.voznje = getVoznje;
+            return View("ProveriVoznje");
+        }
+        [HttpPost]
+        public ActionResult DodeliVoznju(string date)
+        {
+            getVoznje[date].dispecer = (Korisnik)Session["Ulogovan"];
+            ViewBag.voznja = getVoznje[date].VremePorudzbine.ToString();
+            ViewBag.vozaci = getVozaci;
+            ViewBag.auto = getVoznje[date].ZeljenoVozilo;
+            return View("DodeliVozacaVoznji");
+        }
+        [HttpPost]
+        public ActionResult DodelaVozacaVoznji(string vozac, string date)
+        {
+            getVozaci[vozac].Zauzet = true;
+            getVoznje[date].vozac = getVozaci[vozac];
+            getVoznje[date].StatusVoznje = STATUS.OBRADJENA;
+            return View("HomepageAdministrator");
+        }
+        public ActionResult GoToPromenaStatusaVoznje()
+        {
+            if(((Vozac)Session["Ulogovan"]).Zauzet)
+                return View("PromeniStatusVoznje");
+            return View("PromeniStatusVoznjeError");
+        }
+        [HttpPost]
+        public ActionResult PromenaStatusaVoznje(STATUS status)
+        {
+            foreach (KeyValuePair<string, Voznja> kv in getVoznje)
+            {
+                if (kv.Value.vozac.KorisnickoIme != null)
+                {
+                    if (kv.Value.vozac.KorisnickoIme.Equals(((Vozac)Session["Ulogovan"]).KorisnickoIme))
+                    {
+                        kv.Value.StatusVoznje = status;
+                        ((Vozac)Session["Ulogovan"]).Zauzet = false;
+                        if (status == STATUS.NEUSPESNA)
+                        {
+                            ViewBag.voznja = kv.Value;
+                            return View("Komentar");
+                        }
+                        else
+                        {
+                            return View("OdredisteUnos");
+                        }
+                    }
+                }
+            }
+            return View("HomepageVozac");
+        }
+        [HttpPost]
+        public ActionResult OdredisteIznos(Lokacija l, Adresa ad, double cena)
+        {
+            l.adresa = ad;
+            foreach (KeyValuePair<string, Voznja> kv in getVoznje)
+            {
+                if (kv.Value.vozac.KorisnickoIme != null)
+                {
+                    if (kv.Value.vozac.KorisnickoIme.Equals(((Vozac)Session["Ulogovan"]).KorisnickoIme))
+                    {
+                        kv.Value.Odrediste = l;
+                        kv.Value.Iznos = cena;
+                        break;
+                    }
+                }
+            }
+            return View("HomepageVozac");
+        }
+
+        public ActionResult GoToSveVoznje()
+        {
+            ViewBag.voznje = getVoznje;
+            return View("IzlistajSveVoznje");
         }
     }
 }

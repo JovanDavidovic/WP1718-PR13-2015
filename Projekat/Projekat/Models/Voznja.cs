@@ -12,7 +12,7 @@ namespace Projekat.Models
         public TIPAUTOMOBILA ZeljenoVozilo { get; set; }
         public Korisnik musterija { get; set; }
         public Lokacija Odrediste { get; set; }
-        public Dispecer dispecer { get; set; }
+        public Korisnik dispecer { get; set; }
         public Vozac vozac { get; set; }
         public double Iznos { get; set; }
         public Komentar komentar { get; set; } 

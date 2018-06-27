@@ -1,0 +1,28 @@
+﻿@using Projekat.Models
+@{
+    Layout = null;
+}
+
+<h2>PromeniStatusVoznje</h2>
+<form action="/Taxi/PromenaStatusaVoznje" method="post">
+    <table border="0">
+        <tr>
+            <td>
+                <select name="status">
+                    <option value="NEUSPESNA">
+                        Neuspesna
+                    </option>
+                    <option value="USPESNA">
+                        Uspesna
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Promeni status" />
+            </td>
+        </tr>
+    </table>
+</form>
+<a href="/Taxi/GoToHomeVozac">Vratite se na pocetnu</a>
