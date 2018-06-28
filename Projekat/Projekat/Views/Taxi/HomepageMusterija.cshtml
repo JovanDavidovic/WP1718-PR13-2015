@@ -6,47 +6,93 @@
     @{
         var getVoznje = new Func<Dictionary<string, Voznja>>(() => (Dictionary<string, Voznja>)Session["Voznje"]);
     }
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<body>
-    <h2>Dobrodosli, @(((Korisnik)Session["Ulogovan"]).Ime) @(((Korisnik)Session["Ulogovan"]).Prezime)</h2>
-    @if (ViewBag.broj != 0) {
-    <table border="0">
-        <caption>Prikaz voznji</caption>
-        <tr>
-            <th>
-                Ulica
-            </th>
-            <th>
-                broj
-            </th>
-            <th>
-                Vreme porudzbine
-            </th>
-        </tr>
-        @foreach (KeyValuePair<string, Voznja> kv in getVoznje())
-        {
-            if (kv.Value.musterija.KorisnickoIme.Equals((((Korisnik)Session["Ulogovan"]).KorisnickoIme)))
+<body style="background-image:url(https://static.superiorwallpapers.com/images/lthumbs/2015-05/7926_Yellow-taxi-from-New-York-City.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Taxi/Odjava" class="w3-bar-item w3-button w3-right w3-text-white">Odjava</a>
+        <a href="/Taxi/Izmena" class="w3-bar-item w3-button w3-right w3-text-white">Izmenite profil</a>
+        <a href="/Taxi/MusterijaZahtev" class="w3-bar-item w3-button w3-right w3-text-white">Zatrazite voznju</a>
+        <a href="/Taxi/Pregledaj" class="w3-bar-item w3-button w3-right w3-text-white">Upravljanje voznjama</a>
+        <a href="/Taxi/Pretraga" class="w3-bar-item w3-button w3-right w3-text-white">Pretraga voznji</a>
+    </div>
+    <h2 class="w3-text-white w3-center">Dobrodošli, @(((Korisnik)Session["Ulogovan"]).Ime) @(((Korisnik)Session["Ulogovan"]).Prezime)</h2>
+    @if (ViewBag.broj != 0)
+    {
+        <table border="1" style="background-color:transparent" class="w3-text-white w3-large">
+            <caption>Prikaz voznji</caption>
+            <tr>
+                <th>
+                    Ulica
+                </th>
+                <th>
+                    broj
+                </th>
+                <th>
+                    Vreme porudzbine
+                </th>
+                <th>
+                    Status
+                </th>
+            </tr>
+            @foreach (KeyValuePair<string, Voznja> kv in getVoznje())
             {
-                <tr>
-                    <td>
-                        @kv.Value.LokacijaDolaskaTaksija.adresa.Ulica
-                    </td>
-                    <td>
-                        @kv.Value.LokacijaDolaskaTaksija.adresa.Broj
-                    </td>
-                    <td>
-                        @kv.Key
-                    </td>
-                </tr>
+                if (kv.Value.musterija.KorisnickoIme.Equals((((Korisnik)Session["Ulogovan"]).KorisnickoIme)))
+                {
+                    <tr>
+                        <td>
+                            @kv.Value.LokacijaDolaskaTaksija.adresa.Ulica
+                        </td>
+                        <td>
+                            @kv.Value.LokacijaDolaskaTaksija.adresa.Broj
+                        </td>
+                        <td>
+                            @kv.Key
+                        </td>
+                        <td>
+                            @kv.Value.StatusVoznje
+                        </td>
+                    </tr>
+                }
             }
-        }
-    </table>
+        </table>
     }
-        <a href="/Taxi/Izmena">Izmenite profil</a>
-        <br />
-        <a href="/Taxi/MusterijaZahtev">Zahtev za voznju</a>
-        <br />
-        <a href="/Taxi/Pregledaj">Upravljanje voznjama</a>
-        <br />
-        <a href="/Taxi/Odjava">Odjavite se</a>
+    <br/>
+    <form action="/Taxi/FilterMusterija" method="post">
+        <select name="status">
+            <option value="NACEKANJU">
+                Na cekanju
+            </option>
+            <option value="FORMIRANA">
+                Formirane
+            </option>
+            <option value="OBRADJENA">
+                Obradjene
+            </option>
+            <option value="PRIHVACENA">
+                Prihvacene
+            </option>
+            <option value="OTKAZANA">
+                Otkazane
+            </option>
+            <option value="NEUSPESNA">
+                Neuspesne
+            </option>
+            <option value="USPESNA">
+                Uspesne
+            </option>
+        </select>
+        <input type="submit" value="Filtriraj voznje" style="background-color:transparent; border:none" class="w3-text-white w3-hover-purple"/>
+    </form>
+    <form action="/Taxi/SortiranjeMusterija" method="post">
+        <select name="sortiranje">
+            <option value="datum">
+                Po datumu
+            </option>
+            <option value="ocena">
+                Po oceni
+            </option>
+        </select>
+        <input type="submit" value="Sortiraj voznje" style="background-color:transparent; border:none" class="w3-text-white w3-hover-purple"/>
+    </form>
 </body>

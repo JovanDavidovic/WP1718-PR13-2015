@@ -3,106 +3,230 @@
     Layout = null;
 }
 
-<h2>PrikazVoznje</h2>
-<table border="0">
-    <tr>
-        <td>
-            X koordinata
-        </td>
-        <td>
-            @ViewBag.voznja.LokacijaDolaskaTaksija.Xkoordinata
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Y koordinata
-        </td>
-        <td>
-            @ViewBag.voznja.LokacijaDolaskaTaksija.Ykoordinata
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Ulica
-        </td>
-        <td>
-            @ViewBag.voznja.LokacijaDolaskaTaksija.adresa.Ulica
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Broj
-        </td>
-        <td>
-            @ViewBag.voznja.LokacijaDolaskaTaksija.adresa.Broj
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Mesto
-        </td>
-        <td>
-            @ViewBag.voznja.LokacijaDolaskaTaksija.adresa.Mesto
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Pozivni broj
-        </td>
-        <td>
-            @ViewBag.voznja.LokacijaDolaskaTaksija.adresa.PozivniBroj
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Tip automobila
-        </td>
-        <td>
-            @ViewBag.voznja.ZeljenoVozilo
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Komentar ostavio
-        </td>
-        <td>
-            @if (ViewBag.voznja.komentar.korisnik.KorisnickoIme != null)
-            {
-                @ViewBag.voznja.komentar.korisnik.KorisnickoIme
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Ocena
-        </td>
-        <td>
-            @if (ViewBag.voznja.komentar.Ocena != null)
-            {
-                @ViewBag.voznja.komentar.Ocena
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Komentar
-        </td>
-        <td>
-            @if (ViewBag.voznja.komentar.Opis != null)
-            {
-                @ViewBag.voznja.komentar.Opis
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Datum objave
-        </td>
-        <td>
-            @if (ViewBag.voznja.komentar.DatumObjave != null)
-            {
-                @ViewBag.voznja.komentar.DatumObjave
-            }
-        </td>
-    </tr>
-</table>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body style="background-image:url(https://static.superiorwallpapers.com/images/lthumbs/2015-05/7926_Yellow-taxi-from-New-York-City.jpg); background-repeat: no-repeat; background-size: cover">
+
+    <table border="1" style="background-color:transparent" class="w3-text-white w3-large">
+        <tr>
+            <td>
+                Vozac
+            </td>
+            <td>
+                @ViewBag.voznja.vozac.KorisnickoIme
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Polazak
+            </td>
+        </tr>
+        <tr>
+            <td>
+                X koordinata
+            </td>
+            <td>
+                @ViewBag.voznja.LokacijaDolaskaTaksija.Xkoordinata
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Y koordinata
+            </td>
+            <td>
+                @ViewBag.voznja.LokacijaDolaskaTaksija.Ykoordinata
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Ulica
+            </td>
+            <td>
+                @ViewBag.voznja.LokacijaDolaskaTaksija.adresa.Ulica
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Broj
+            </td>
+            <td>
+                @ViewBag.voznja.LokacijaDolaskaTaksija.adresa.Broj
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Mesto
+            </td>
+            <td>
+                @ViewBag.voznja.LokacijaDolaskaTaksija.adresa.Mesto
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Pozivni broj
+            </td>
+            <td>
+                @ViewBag.voznja.LokacijaDolaskaTaksija.adresa.PozivniBroj
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Destinacija
+            </td>
+        </tr>
+        <tr>
+            <td>
+                X koordinata
+            </td>
+            <td>
+                @try
+                {
+                    @ViewBag.voznja.Odrediste.Xkoordinata
+                }
+                catch { }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Y koordinata
+            </td>
+            <td>
+                @try
+                {
+                    @ViewBag.voznja.Odrediste.Ykoordinata
+                }
+                catch { }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Ulica
+            </td>
+            <td>
+                @try
+                {
+                    @ViewBag.voznja.Odrediste.adresa.Ulica
+                }
+                catch { }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Broj
+            </td>
+            <td>
+                @try
+                {
+                    @ViewBag.voznja.Odrediste.adresa.Broj
+                }
+                catch { }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Mesto
+            </td>
+            <td>
+                @try
+                {
+                    @ViewBag.voznja.Odrediste.adresa.Mesto
+                }
+                catch { }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Pozivni broj
+            </td>
+            <td>
+                @try
+                {
+                    @ViewBag.voznja.Odrediste.adresa.PozivniBroj
+                }
+                catch { }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Tip automobila
+            </td>
+            <td>
+                @ViewBag.voznja.ZeljenoVozilo
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Komentar ostavio
+            </td>
+            <td>
+                @try
+                {
+                    if (ViewBag.voznja.komentar.korisnik.KorisnickoIme != null)
+                    {
+                        @ViewBag.voznja.komentar.korisnik.KorisnickoIme
+                    }
+                }
+                catch { }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Ocena
+            </td>
+            <td>
+                @try
+                {
+                    if (ViewBag.voznja.komentar.Ocena != null)
+                    {
+                        @ViewBag.voznja.komentar.Ocena
+                    }
+                }
+                catch { }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Komentar
+            </td>
+            <td>
+                @try
+                {
+                    if (ViewBag.voznja.komentar.Opis != null)
+                    {
+                        @ViewBag.voznja.komentar.Opis
+                    }
+                }
+                catch { }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Datum objave
+            </td>
+            <td>
+                @try
+                {
+                    if (ViewBag.voznja.komentar.DatumObjave != null)
+                    {
+                        @ViewBag.voznja.komentar.DatumObjave
+                    }
+                }
+                catch { }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Iznos
+            </td>
+            <td>
+                @try
+                {
+                    if (ViewBag.voznja.Iznos != null)
+                    {
+                        @ViewBag.voznja.Iznos
+                    }
+                }
+                catch { }
+            </td>
+        </tr>
+    </table>
+</body>

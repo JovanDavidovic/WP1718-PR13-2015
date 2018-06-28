@@ -3,110 +3,98 @@
     Layout = null;
 }
 
-<h2>Izmena profila</h2>
-<form action="/Taxi/Izmeni" method="post">
-    <select hidden name="Uloga">
-        @if ((((Korisnik)Session["Ulogovan"]).Uloga) == ULOGA.DISPECER)
-        {
-            <option selected value="DISPECER"></option>
-        }
-        else if ((((Korisnik)Session["Ulogovan"]).Uloga) == ULOGA.MUSTERIJA)
-        {
-            <option selected value="MUSTERIJA"></option>
-        }
-        else
-        {
-            <option selected value="VOZAC"></option>
-        }
-    </select>
-    <table border="0">
-        <tr>
-            <td>
-                Ime
-            </td>
-            <td>
-                <input type="text" value="@(((Korisnik)Session["Ulogovan"]).Ime)" name="Ime">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Prezime
-            </td>
-            <td>
-                <input type="text" value="@(((Korisnik)Session["Ulogovan"]).Prezime)" name="Prezime">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Korisnicko ime
-            </td>
-            <td>
-                <input type="text" value="@(((Korisnik)Session["Ulogovan"]).KorisnickoIme)" name="KorisnickoIme">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Email
-            </td>
-            <td>
-                <input type="email" value="@(((Korisnik)Session["Ulogovan"]).Email)" name="Email">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Lozinka
-            </td>
-            <td>
-                <input required type="password" name="Lozinka">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Pol
-            </td>
-            <td>
-                <select name="Pol">
-                    @if ((((Korisnik)Session["Ulogovan"]).Pol) == POL.MUSKI)
-                    {
-                        <option selected value="MUSKI">
-                            Muski
-                        </option>
-                        <option value="ZENSKI">
-                            Zenki
-                        </option>
-                    }
-                    else
-                    {
-                        <option value="MUSKI">
-                            Muski
-                        </option>
-                        <option selected value="ZENSKI">
-                            Zenki
-                        </option>
-                    }
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                JMBG
-            </td>
-            <td>
-                <input type="text" value="@(((Korisnik)Session["Ulogovan"]).JMBG)" name="JMBG">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Telefon
-            </td>
-            <td>
-                <input type="tel" value="@(((Korisnik)Session["Ulogovan"]).Telefon)" name="Telefon" pattern="[0-9]{3} [0-9]{3}-[0-9]{3,4}" placeholder="060 111-1111" oninvalid="setCustomValidity('Format telefonskog broja je: 060 111-1111')" oninput="setCustomValidity('')">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">
-                <input type="submit" value="Sacuvaj izmene" />
-            </td>
-        </tr>
-    </table>
-</form>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body style="background-image:url(https://static.superiorwallpapers.com/images/lthumbs/2015-05/7926_Yellow-taxi-from-New-York-City.jpg); background-repeat: no-repeat; background-size: cover">
+    <form action="/Taxi/Izmeni" method="post">
+        <table border="0" style="background-color:transparent" class="w3-text-white w3-display-left w3-large">
+            <tr>
+                <td>
+                    Ime
+                </td>
+                <td>
+                    <input type="text" value="@(((Korisnik)Session["Ulogovan"]).Ime)" name="Ime">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Prezime
+                </td>
+                <td>
+                    <input type="text" value="@(((Korisnik)Session["Ulogovan"]).Prezime)" name="Prezime">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Korisnicko ime
+                </td>
+                <td>
+                    <input type="text" value="@(((Korisnik)Session["Ulogovan"]).KorisnickoIme)" name="KorisnickoIme">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email
+                </td>
+                <td>
+                    <input type="email" value="@(((Korisnik)Session["Ulogovan"]).Email)" name="Email">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Lozinka
+                </td>
+                <td>
+                    <input required type="password" name="Lozinka">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Pol
+                </td>
+                <td>
+                    <select name="Pol">
+                        @if ((((Korisnik)Session["Ulogovan"]).Pol) == POL.MUSKI)
+                        {
+                            <option selected value="MUSKI">
+                                Muski
+                            </option>
+                            <option value="ZENSKI">
+                                Zenki
+                            </option>
+                        }
+                        else
+                        {
+                            <option value="MUSKI">
+                                Muski
+                            </option>
+                            <option selected value="ZENSKI">
+                                Zenki
+                            </option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    JMBG
+                </td>
+                <td>
+                    <input type="text" value="@(((Korisnik)Session["Ulogovan"]).JMBG)" name="JMBG">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Telefon
+                </td>
+                <td>
+                    <input type="tel" value="@(((Korisnik)Session["Ulogovan"]).Telefon)" name="Telefon" pattern="[0-9]{3} [0-9]{3}-[0-9]{3,4}" placeholder="060 111-1111" oninvalid="setCustomValidity('Format telefonskog broja je: 060 111-1111')" oninput="setCustomValidity('')">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Sacuvaj izmene" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>

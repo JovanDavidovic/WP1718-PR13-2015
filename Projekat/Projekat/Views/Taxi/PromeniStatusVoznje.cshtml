@@ -3,26 +3,30 @@
     Layout = null;
 }
 
-<h2>PromeniStatusVoznje</h2>
-<form action="/Taxi/PromenaStatusaVoznje" method="post">
-    <table border="0">
-        <tr>
-            <td>
-                <select name="status">
-                    <option value="NEUSPESNA">
-                        Neuspesna
-                    </option>
-                    <option value="USPESNA">
-                        Uspesna
-                    </option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="submit" value="Promeni status" />
-            </td>
-        </tr>
-    </table>
-</form>
-<a href="/Taxi/GoToHomeVozac">Vratite se na pocetnu</a>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body style="background-image:url(https://static.superiorwallpapers.com/images/lthumbs/2015-05/7926_Yellow-taxi-from-New-York-City.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Taxi/GoToHomeVozac" class="w3-bar-item w3-button w3-text-white">Povratak na pocetnu stranicu</a>
+    </div>
+    <form action="/Taxi/PromenaStatusaVoznje" method="post">
+        <table border="0" style="background-color:transparent" class="w3-text-white w3-display-left w3-large">
+            <tr>
+                <td>
+                    <select name="status">
+                        <option value="NEUSPESNA">
+                            Neuspesna
+                        </option>
+                        <option value="USPESNA">
+                            Uspesna
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Promeni status" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>

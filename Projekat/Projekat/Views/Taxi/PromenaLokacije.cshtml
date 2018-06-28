@@ -3,63 +3,65 @@
     Layout = null;
 }
 
-<h2>Promenite lokaciju</h2>
-<form action="/Taxi/PromenaLokacije" method="post">
-    <input hidden type="text" value="@(((Vozac)Session["Ulogovan"]).KorisnickoIme)" name="log"/>
-    <table border="0">
-        <tr>
-            <td>
-                X koordinata
-            </td>
-            <td>
-                <input type="number" value="@(((Vozac)Session["Ulogovan"]).lokacija.Xkoordinata)" name="Xkoordinata">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Y koordinata
-            </td>
-            <td>
-                <input type="number" value="@(((Vozac)Session["Ulogovan"]).lokacija.Ykoordinata)" name="Ykoordinata">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Ulica
-            </td>
-            <td>
-                <input type="text" value="@(((Vozac)Session["Ulogovan"]).lokacija.adresa.Ulica)" name="Ulica">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Broj
-            </td>
-            <td>
-                <input type="number" value="@(((Vozac)Session["Ulogovan"]).lokacija.adresa.Broj)" name="Broj">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Mesto
-            </td>
-            <td>
-                <input type="text" value="@(((Vozac)Session["Ulogovan"]).lokacija.adresa.Mesto)" name="Mesto">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Pozivni broj
-            </td>
-            <td>
-                <input type="number" value="@(((Vozac)Session["Ulogovan"]).lokacija.adresa.PozivniBroj)" name="PozivniBroj">
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">
-                <input type="submit" value="Sacuvaj lokaciju" />
-            </td>
-        </tr>
-    </table>
-</form>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body style="background-image:url(https://static.superiorwallpapers.com/images/lthumbs/2015-05/7926_Yellow-taxi-from-New-York-City.jpg); background-repeat: no-repeat; background-size: cover">
 
+    <form action="/Taxi/PromenaLokacije" method="post">
+        <input hidden type="text" value="@(((Vozac)Session["Ulogovan"]).KorisnickoIme)" name="log" />
+        <table border="0" style="background-color:transparent" class="w3-text-white w3-display-left w3-large">
+            <tr>
+                <td>
+                    X koordinata
+                </td>
+                <td>
+                    <input type="number" value="@(((Vozac)Session["Ulogovan"]).lokacija.Xkoordinata)" name="Xkoordinata">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Y koordinata
+                </td>
+                <td>
+                    <input type="number" value="@(((Vozac)Session["Ulogovan"]).lokacija.Ykoordinata)" name="Ykoordinata">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Ulica
+                </td>
+                <td>
+                    <input type="text" value="@(((Vozac)Session["Ulogovan"]).lokacija.adresa.Ulica)" name="Ulica">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Broj
+                </td>
+                <td>
+                    <input type="number" value="@(((Vozac)Session["Ulogovan"]).lokacija.adresa.Broj)" name="Broj">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Mesto
+                </td>
+                <td>
+                    <input type="text" value="@(((Vozac)Session["Ulogovan"]).lokacija.adresa.Mesto)" name="Mesto">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Pozivni broj
+                </td>
+                <td>
+                    <input type="number" value="@(((Vozac)Session["Ulogovan"]).lokacija.adresa.PozivniBroj)" name="PozivniBroj">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Sacuvaj lokaciju" style="background-color:transparent; border:none" class="w3-text-white w3-hover-purple"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>

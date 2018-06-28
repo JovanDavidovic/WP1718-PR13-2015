@@ -233,6 +233,16 @@
     <Content Include="Views\Taxi\PromeniStatusVoznjeError.cshtml" />
     <Content Include="Views\Taxi\IzlistajSveVoznje.cshtml" />
     <Content Include="Views\Taxi\KreiranjeVozacaError.cshtml" />
+    <Content Include="Views\Taxi\ProveriVoznjeVozac.cshtml" />
+    <Content Include="Views\Taxi\Filtrirano.cshtml" />
+    <Content Include="Views\Taxi\VozacPreuzimaError.cshtml" />
+    <Content Include="Views\Taxi\Pretraga.cshtml" />
+    <Content Include="Views\Taxi\PretragaAdmin.cshtml" />
+    <Content Include="Views\Taxi\FiltriranoAdmin.cshtml" />
+    <Content Include="Views\Taxi\IzmenaVozac.cshtml" />
+    <Content Include="Views\Taxi\IzmenaAdmin.cshtml" />
+    <Content Include="Views\Taxi\SignUpError2.cshtml" />
+    <Content Include="Views\Taxi\IzmenaVozacaError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

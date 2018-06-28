@@ -3,27 +3,29 @@
     Layout = null;
 }
 
-<h2>DodeliVozacaVoznji</h2>
-<form action="/Taxi/DodelaVozacaVoznji" method="post">
-    <table border="0">
-        <tr>
-            <td>
-                <select name="vozac">
-                    @foreach (KeyValuePair<string, Vozac> kv in ViewBag.vozaci)
-                    {
-                        if (!kv.Value.Zauzet && (kv.Value.automobil.TipAutomobila == ViewBag.auto || ViewBag.auto == TIPAUTOMOBILA.NEOZNACEN))
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body style="background-image:url(https://static.superiorwallpapers.com/images/lthumbs/2015-05/7926_Yellow-taxi-from-New-York-City.jpg); background-repeat: no-repeat; background-size: cover">
+    <form action="/Taxi/DodelaVozacaVoznji" method="post">
+        <table border="0" style="background-color:transparent" class="w3-text-white w3-display-left w3-large">
+            <tr>
+                <td>
+                    <select name="vozac">
+                        @foreach (KeyValuePair<string, Vozac> kv in ViewBag.vozaci)
                         {
-                            <option value="@kv.Key">@kv.Key</option>
+                            if (!kv.Value.Zauzet && (kv.Value.automobil.TipAutomobila == ViewBag.auto || ViewBag.auto == TIPAUTOMOBILA.NEOZNACEN))
+                            {
+                                <option value="@kv.Key">@kv.Key</option>
+                            }
                         }
-                    }
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="hidden" value="@ViewBag.voznja" name="date" />
-                <input type="submit" value="Dodeli" />
-            </td>
-        </tr>
-    </table>
-</form>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" value="@ViewBag.voznja" name="date" />
+                    <input type="submit" value="Dodeli" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>

@@ -2,19 +2,24 @@
 @{
     Layout = null;
 }
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body style="background-image:url(https://static.superiorwallpapers.com/images/lthumbs/2015-05/7926_Yellow-taxi-from-New-York-City.jpg); background-repeat: no-repeat; background-size: cover">
 
-<h2>Molim vas navedite razlog otkazivanja voznje</h2>
-<form action="/Taxi/Komentarisi" method="post" id="usrform">
-    @if (ViewBag.voznja.StatusVoznje == STATUS.OTKAZANA || ViewBag.voznja.StatusVoznje == STATUS.NEUSPESNA)
-    {
-        <input hidden type="number" value="0" name="ocena" />
-    }
-    else
-    {
-        <input type="number" min="1" max="5" name="ocena" /><br />
-    }
-    <input type="hidden" value="@ViewBag.voznja.VremePorudzbine" name="date" />
-    <input type="submit" value="Komentarisi" />
-</form>
+    <h2 class="w3-text-white">Molim vas navedite razlog otkazivanja voznje</h2>
+    <textarea name="komentar" form="usrform"></textarea>
+    <form action="/Taxi/Komentarisi" method="post" id="usrform">
+        @if (ViewBag.voznja.StatusVoznje == STATUS.OTKAZANA || ViewBag.voznja.StatusVoznje == STATUS.NEUSPESNA)
+        {
+            <input hidden type="number" value="0" name="ocena" />
+        }
+        else
+        {
+            <p class="w3-text-white">Ocena</p>
+            <input type="number" min="1" max="5" name="ocena" /><br />
+        }
+        <input type="hidden" value="@ViewBag.voznja.VremePorudzbine" name="date" />
+        <input type="submit" value="Komentarisi" style="background-color:transparent; border:none" class="w3-text-white w3-hover-purple" />
+    </form>
 
-<textarea name="komentar" form="usrform"></textarea>
+
+</body>

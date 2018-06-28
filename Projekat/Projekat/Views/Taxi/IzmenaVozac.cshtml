@@ -2,19 +2,17 @@
 @{
     Layout = null;
 }
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body style="background-image:url(https://static.superiorwallpapers.com/images/lthumbs/2015-05/7926_Yellow-taxi-from-New-York-City.jpg); background-repeat: no-repeat; background-size: cover">
-
-    <h2 class="w3-text-white w3-center">Korisnicko ime je zauzeto, izaberite drugo korisnicko ime</h2>
-
-    <form action="/Taxi/KreiranjeVozaca" method="post">
+    <form action="/Taxi/IzmeniVozac" method="post">
         <table border="0" style="background-color:transparent" class="w3-text-white w3-display-left w3-large">
             <tr>
                 <td>
                     Ime
                 </td>
                 <td>
-                    <input type="text" value="@ViewBag.vozac.Ime" name="Ime">
+                    <input type="text" value="@(((Vozac)Session["Ulogovan"]).Ime)" name="Ime">
                 </td>
             </tr>
             <tr>
@@ -22,7 +20,7 @@
                     Prezime
                 </td>
                 <td>
-                    <input type="text" value="@ViewBag.vozac.Prezime" name="Prezime">
+                    <input type="text" value="@(((Vozac)Session["Ulogovan"]).Prezime)" name="Prezime">
                 </td>
             </tr>
             <tr>
@@ -30,7 +28,7 @@
                     Korisnicko ime
                 </td>
                 <td>
-                    <input type="text" name="KorisnickoIme">
+                    <input type="text" value="@(((Vozac)Session["Ulogovan"]).KorisnickoIme)" name="KorisnickoIme">
                 </td>
             </tr>
             <tr>
@@ -38,7 +36,7 @@
                     Email
                 </td>
                 <td>
-                    <input type="email" value="@ViewBag.vozac.Email" name="Email">
+                    <input type="email" value="@(((Vozac)Session["Ulogovan"]).Email)" name="Email">
                 </td>
             </tr>
             <tr>
@@ -55,7 +53,7 @@
                 </td>
                 <td>
                     <select name="Pol">
-                        @if (ViewBag.vozac.Pol == POL.MUSKI)
+                        @if ((((Vozac)Session["Ulogovan"]).Pol) == POL.MUSKI)
                         {
                             <option selected value="MUSKI">
                                 Muski
@@ -81,7 +79,7 @@
                     JMBG
                 </td>
                 <td>
-                    <input type="text" value="@ViewBag.vozac.JMBG" name="JMBG">
+                    <input type="text" value="@(((Vozac)Session["Ulogovan"]).JMBG)" name="JMBG">
                 </td>
             </tr>
             <tr>
@@ -89,7 +87,7 @@
                     Telefon
                 </td>
                 <td>
-                    <input type="tel" name="Telefon" value="@ViewBag.vozac.Telefon" pattern="[0-9]{3} [0-9]{3}-[0-9]{3,4}" placeholder="060 111-1111" oninvalid="setCustomValidity('Format telefonskog broja je: 060 111-1111')" oninput="setCustomValidity('')">
+                    <input type="tel" value="@(((Vozac)Session["Ulogovan"]).Telefon)" name="Telefon" pattern="[0-9]{3} [0-9]{3}-[0-9]{3,4}" placeholder="060 111-1111" oninvalid="setCustomValidity('Format telefonskog broja je: 060 111-1111')" oninput="setCustomValidity('')">
                 </td>
             </tr>
             <tr>
@@ -97,7 +95,7 @@
                     Godiste automobila
                 </td>
                 <td>
-                    <input type="number" min="1900" max="2018" value="@ViewBag.vozac.automobil.Godiste" name="Godiste">
+                    <input type="number" value="@(((Vozac)Session["Ulogovan"]).automobil.Godiste)" min="1900" max="2018" name="Godiste">
                 </td>
             </tr>
             <tr>
@@ -105,7 +103,7 @@
                     Registarska oznaka
                 </td>
                 <td>
-                    <input type="text" value="@ViewBag.vozac.automobil.RegistarskaOznaka" name="RegistarskaOznaka">
+                    <input type="text" value="@(((Vozac)Session["Ulogovan"]).automobil.RegistarskaOznaka)" name="RegistarskaOznaka">
                 </td>
             </tr>
             <tr>
@@ -113,7 +111,7 @@
                     Broj vozila
                 </td>
                 <td>
-                    <input type="number" value="@ViewBag.vozac.automobil.BrojVozila" name="BrojVozila">
+                    <input type="number" value="@(((Vozac)Session["Ulogovan"]).automobil.BrojVozila)" name="BrojVozila">
                 </td>
             </tr>
             <tr>
@@ -122,24 +120,12 @@
                 </td>
                 <td>
                     <select name="TipAutomobila">
-                        @if (ViewBag.vozac.automobil.TipAutomobila == TIPAUTOMOBILA.PUTNICKI)
-                        {
-                            <option selected value="PUTNICKI">
-                                Putnicki
-                            </option>
-                            <option value="KOMBI">
-                                Kombi
-                            </option>
-                        }
-                        else
-                        {
-                            <option value="PUTNICKI">
-                                Putnicki
-                            </option>
-                            <option selected value="KOMBI">
-                                Kombi
-                            </option>
-                        }
+                        <option value="PUTNICKI">
+                            Putnicki
+                        </option>
+                        <option value="KOMBI">
+                            Kombi
+                        </option>
                     </select>
                 </td>
             </tr>
@@ -148,7 +134,7 @@
                     X koordinata
                 </td>
                 <td>
-                    <input type="number" value="@ViewBag.vozac.lokacija.Xkoordinata" name="Xkoordinata">
+                    <input type="number" value="@(((Vozac)Session["Ulogovan"]).lokacija.Xkoordinata)" name="Xkoordinata">
                 </td>
             </tr>
             <tr>
@@ -156,7 +142,7 @@
                     Y koordinata
                 </td>
                 <td>
-                    <input type="number" value="@ViewBag.vozac.lokacija.Ykoordinata" name="Ykoordinata">
+                    <input type="number" value="@(((Vozac)Session["Ulogovan"]).lokacija.Ykoordinata)" name="Ykoordinata">
                 </td>
             </tr>
             <tr>
@@ -164,7 +150,7 @@
                     Ulica
                 </td>
                 <td>
-                    <input type="text" value="@ViewBag.vozac.lokacija.adresa.Ulica" name="Ulica">
+                    <input type="text" value="@(((Vozac)Session["Ulogovan"]).lokacija.adresa.Ulica)" name="Ulica">
                 </td>
             </tr>
             <tr>
@@ -172,7 +158,7 @@
                     Broj
                 </td>
                 <td>
-                    <input type="number" value="@ViewBag.vozac.lokacija.adresa.Broj" name="Broj">
+                    <input type="number" value="@(((Vozac)Session["Ulogovan"]).lokacija.adresa.Broj)" name="Broj">
                 </td>
             </tr>
             <tr>
@@ -180,7 +166,7 @@
                     Mesto
                 </td>
                 <td>
-                    <input type="text" value="@ViewBag.vozac.lokacija.adresa.Mesto" name="Mesto">
+                    <input type="text" value="@(((Vozac)Session["Ulogovan"]).lokacija.adresa.Mesto)" name="Mesto">
                 </td>
             </tr>
             <tr>
@@ -188,12 +174,12 @@
                     Pozivni broj
                 </td>
                 <td>
-                    <input type="number" value="@ViewBag.vozac.lokacija.adresa.PozivniBroj" name="PozivniBroj">
+                    <input type="number" value="@(((Vozac)Session["Ulogovan"]).lokacija.adresa.PozivniBroj)" name="PozivniBroj">
                 </td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <input type="submit" value="Kreiraj" style="background-color:transparent; border:none" class="w3-text-white w3-hover-purple"/>
+                    <input type="submit" value="Sacuvaj izmene" />
                 </td>
             </tr>
         </table>

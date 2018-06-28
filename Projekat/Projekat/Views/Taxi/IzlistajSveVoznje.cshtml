@@ -3,44 +3,48 @@
     Layout = null;
 }
 
-<h2>IzlistajSveVoznje</h2>
-<table border="0">
-    <tr>
-        <th>
-            Vreme kreiranja porudzbine
-        </th>
-        <th>
-            Adresa
-        </th>
-        <th>
-            Ocena
-        </th>
-        <th>
-            Komentar
-        </th>
-    </tr>
-    @foreach (KeyValuePair<string, Voznja> kv in ViewBag.voznje)
-    {
-    <tr>
-        <td>
-            @kv.Value.VremePorudzbine
-        </td>
-        <td>
-            @kv.Value.LokacijaDolaskaTaksija.adresa.Ulica @kv.Value.LokacijaDolaskaTaksija.adresa.Broj, @kv.Value.LokacijaDolaskaTaksija.adresa.Mesto @kv.Value.LokacijaDolaskaTaksija.adresa.PozivniBroj
-        </td>
-        <td>
-            @kv.Value.komentar.Ocena
-        </td>
-        <td>
-            @kv.Value.komentar.Opis
-        </td>
-        <td>
-            <form action="/Taxi/PrikaziVoznju" method="post">
-                <input type="hidden" value="@kv.Key" name="date" />
-                <input type="submit" value="Prikazi" />
-            </form>
-        </td>
-    </tr>
-    }
-</table>
-<a href="/Taxi/GoToHomeAdmin">Vratite se na pocetnu</a>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body style="background-image:url(https://static.superiorwallpapers.com/images/lthumbs/2015-05/7926_Yellow-taxi-from-New-York-City.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Taxi/GoToHomeAdmin" class="w3-bar-item w3-button w3-text-white">Povratak na pocetnu stranicu</a>
+    </div>
+    <table border="1" style="background-color:transparent" class="w3-text-white w3-large">
+        <tr>
+            <th>
+                Vreme kreiranja porudzbine
+            </th>
+            <th>
+                Adresa
+            </th>
+            <th>
+                Ocena
+            </th>
+            <th>
+                Komentar
+            </th>
+        </tr>
+        @foreach (KeyValuePair<string, Voznja> kv in ViewBag.voznje)
+        {
+            <tr>
+                <td>
+                    @kv.Value.VremePorudzbine
+                </td>
+                <td>
+                    @kv.Value.LokacijaDolaskaTaksija.adresa.Ulica @kv.Value.LokacijaDolaskaTaksija.adresa.Broj, @kv.Value.LokacijaDolaskaTaksija.adresa.Mesto @kv.Value.LokacijaDolaskaTaksija.adresa.PozivniBroj
+                </td>
+                <td>
+                    @kv.Value.komentar.Ocena
+                </td>
+                <td>
+                    @kv.Value.komentar.Opis
+                </td>
+                <td>
+                    <form action="/Taxi/PrikaziVoznju" method="post">
+                        <input type="hidden" value="@kv.Key" name="date" />
+                        <input type="submit" value="Prikazi" style="background-color:transparent; border:none" class="w3-text-white w3-hover-purple"/>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+</body>

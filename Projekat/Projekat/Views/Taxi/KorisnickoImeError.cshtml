@@ -2,32 +2,31 @@
 @{
     Layout = null;
 }
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body style="background-image:url(https://static.superiorwallpapers.com/images/lthumbs/2015-05/7926_Yellow-taxi-from-New-York-City.jpg); background-repeat: no-repeat; background-size: cover">
 
-<h2>Korisnicko ime koje ste uneli ne postoji, pokusajte ponovo</h2>
-<form action="/Taxi/LogIn" method="post">
-    <table border="0">
-        <tr>
-            <td>
-                Korisnicko ime
-            </td>
-            <td>
-                <input type="text" name="korisnickoIme">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Lozinka
-            </td>
-            <td>
-                <input type="password" name="lozinka">
-            </td>
-        </tr>
-        <tr>
-            <td> &nbsp;</td>
-            <td>
-                <input type="submit" value="LogIn" />
-            </td>
-        </tr>
-    </table>
-</form>
 
+    <form action="/Taxi/LogIn" method="post">
+        <table border="0" style="background-color:transparent" class="w3-text-white w3-display-topright w3-large">
+            <tr>
+                <td>
+                    Korisnicko ime
+                </td>
+                <td>
+                    <input type="text" name="korisnickoIme">
+                </td>
+                <td>
+                    Lozinka
+                </td>
+                <td>
+                    <input type="password" name="lozinka">
+                </td>
+                <td colspan="2">
+                    <input type="submit" value="LogIn" style="background-color:transparent; border:none" class="w3-text-white w3-hover-purple" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br/>
+    <h2 class="w3-text-white w3-center">Korisnicko ime koje ste uneli ne postoji, pokusajte ponovo</h2>
+</body>

@@ -6,22 +6,39 @@
     @{
         var getVoznje = new Func<Dictionary<string, Voznja>>(() => (Dictionary<string, Voznja>)Session["Voznje"]);
     }
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<body>
-    <h2>Dobrodosli, @(((Korisnik)Session["Ulogovan"]).Ime) @(((Korisnik)Session["Ulogovan"]).Prezime)</h2>
+<body style="background-image:url(https://static.superiorwallpapers.com/images/lthumbs/2015-05/7926_Yellow-taxi-from-New-York-City.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Taxi/Odjava" class="w3-bar-item w3-button w3-right w3-text-white">Odjava</a>
+        <a href="/Taxi/IzmenaAdmin" class="w3-bar-item w3-button w3-right w3-text-white">Izmenite profil</a>
+        <a href="/Taxi/PretragaAdmin" class="w3-bar-item w3-button w3-right w3-text-white">Pretraga voznji</a>
+        <a href="/Taxi/GoToKreiranjeVozaca" class="w3-bar-item w3-button w3-right w3-text-white">Unesite vozaca</a>
+        <a href="/Taxi/GoToKreiranjeVoznje" class="w3-bar-item w3-button w3-right w3-text-white">Kreirajte voznju</a>
+        <a href="/Taxi/GoToProveraVoznji" class="w3-bar-item w3-button w3-right w3-text-white">Slobodne voznje</a>
+        <a href="/Taxi/GoToSveVoznje" class="w3-bar-item w3-button w3-right w3-text-white">Pregled svih voznji</a>
+    </div>
+    <h2 class="w3-text-white w3-center">Dobrodošli, @(((Korisnik)Session["Ulogovan"]).Ime) @(((Korisnik)Session["Ulogovan"]).Prezime)</h2>
+
     @if (ViewBag.broj != 0)
     {
-        <table border="0">
+        <table border="1" style="background-color:transparent" class="w3-text-white w3-large">
             <caption>Prikaz voznji</caption>
             <tr>
                 <th>
                     Ulica
                 </th>
                 <th>
-                    broj
+                    Broj
                 </th>
                 <th>
                     Vreme porudzbine
+                </th>
+                <th>
+                    Vozac
+                </th>
+                <th>
+                    Status
                 </th>
             </tr>
             @foreach (KeyValuePair<string, Voznja> kv in getVoznje())
@@ -30,27 +47,27 @@
                 {
                     if (kv.Value.dispecer.KorisnickoIme.Equals((((Korisnik)Session["Ulogovan"]).KorisnickoIme)))
                     {
-                        <tr>
-                            <td>
-                                @kv.Value.LokacijaDolaskaTaksija.adresa.Ulica
-                            </td>
-                            <td>
-                                @kv.Value.LokacijaDolaskaTaksija.adresa.Broj
-                            </td>
-                            <td>
-                                @kv.Key
-                            </td>
-                        </tr>
+            <tr>
+                <td>
+                    @kv.Value.LokacijaDolaskaTaksija.adresa.Ulica
+                </td>
+                <td>
+                    @kv.Value.LokacijaDolaskaTaksija.adresa.Broj
+                </td>
+                <td>
+                    @kv.Key
+                </td>
+                <td>
+                    @kv.Value.vozac.KorisnickoIme
+                </td>
+                <td>
+                    @kv.Value.StatusVoznje
+                </td>
+            </tr>
                     }
                 }
                 catch { }
             }
         </table>
     }
-    <a href="/Taxi/Izmena">Izmenite profil</a><br />
-    <a href="/Taxi/GoToKreiranjeVozaca">Kreiranje vozaca</a><br />
-    <a href="/Taxi/GoToKreiranjeVoznje">Kreiranje voznje</a><br />
-    <a href="/Taxi/GoToProveraVoznji">Pregled ne preuzetih voznji</a><br />
-    <a href="/Taxi/GoToSveVoznje">Sve voznje</a><br />
-    <a href="/Taxi/Odjava">Odjavite se</a>
 </body>

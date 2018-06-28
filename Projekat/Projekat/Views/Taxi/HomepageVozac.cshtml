@@ -2,11 +2,64 @@
 @{
     Layout = null;
 }
+<head>
+    @{
+        var getVoznje = new Func<Dictionary<string, Voznja>>(() => (Dictionary<string, Voznja>)Session["Voznje"]);
+    }
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body style="background-image:url(https://static.superiorwallpapers.com/images/lthumbs/2015-05/7926_Yellow-taxi-from-New-York-City.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Taxi/Odjava" class="w3-bar-item w3-button w3-right w3-text-white">Odjava</a>
+        <a href="/Taxi/IzmenaVozac" class="w3-bar-item w3-button w3-right w3-text-white">Izmenite profil</a>
+        <a href="/Taxi/PromeniLokaciju" class="w3-bar-item w3-button w3-right w3-text-white">Promena lokacije</a>
+        <a href="/Taxi/GoToPromenaStatusaVoznje" class="w3-bar-item w3-button w3-right w3-text-white">Promenite status trenutne voznje</a>
+        <a href="/Taxi/GoToProveraVoznjiVozac" class="w3-bar-item w3-button w3-right w3-text-white">Lista voznji na cekanju</a>
+    </div>
+    <h2 class="w3-text-white w3-center">Dobrodošli, @(((Korisnik)Session["Ulogovan"]).Ime) @(((Korisnik)Session["Ulogovan"]).Prezime)</h2>
 
-<h2>Dobrodosli, @(((Korisnik)Session["Ulogovan"]).Ime) @(((Korisnik)Session["Ulogovan"]).Prezime)</h2>
-
-<a href="/Taxi/Izmena">Izmenite profil</a><br />
-<a href="/Taxi/PromeniLokaciju">Promenite lokaciju</a><br />
-<a href="/Taxi/GoToPromenaStatusaVoznje">Promenite status voznje</a><br />
-<a href="/Taxi/Odjava">Odjavite se</a>
-
+    @if (ViewBag.broj != 0)
+    {
+        <table border="1" style="background-color:transparent" class="w3-text-white w3-large">
+            <caption>Prikaz voznji</caption>
+            <tr>
+                <th>
+                    Ulica
+                </th>
+                <th>
+                    broj
+                </th>
+                <th>
+                    Vreme porudzbine
+                </th>
+                <th>
+                    Status
+                </th>
+            </tr>
+            @foreach (KeyValuePair<string, Voznja> kv in getVoznje())
+            {
+                try
+                {
+                    if (kv.Value.vozac.KorisnickoIme.Equals((((Korisnik)Session["Ulogovan"]).KorisnickoIme)))
+                    {
+                        <tr>
+                            <td>
+                                @kv.Value.LokacijaDolaskaTaksija.adresa.Ulica
+                            </td>
+                            <td>
+                                @kv.Value.LokacijaDolaskaTaksija.adresa.Broj
+                            </td>
+                            <td>
+                                @kv.Key
+                            </td>
+                            <td>
+                                @kv.Value.StatusVoznje
+                            </td>
+                        </tr>
+                    }
+                }
+                catch { }
+            }
+        </table>
+    }
+</body>
